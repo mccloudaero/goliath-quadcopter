@@ -1,0 +1,1 @@
+The files contained in this directory are for building the rotors used for the Goliath Quadcopter.  Goliath uses four rotors with two rotating clockwise (CW) and two counter-clockwise (CCW).
