@@ -1,0 +1,5 @@
+Bowed E-Clip for 5/8" shaft (98398A140)
+Groove Width Required: 0.077" (+0.003" -0.000")
+Groove Depth Required: 0.070"
+
+Load Capacity 1,029 lbs
