@@ -1,0 +1,5 @@
+Retaining Rings for 3/4" shaft (McMaster-Carr 96363A578)
+Groove Width Required: 0.047" (+0.003" -0.000")
+Groove Depth Required: 0.023"
+
+Load Capacity 1,218 lbs
