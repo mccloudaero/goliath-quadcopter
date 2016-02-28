@@ -14,6 +14,12 @@ Follow the instructions for setting up the controller for Single Channel Flight 
 [Controller Setup](http://https://youtu.be/scqO7vbH2jo)
 
 ####Goliath specific configuration
+Additional channels are required for Goliath to control the gas engine. Setup the controller with the following channels: 
+Channel | Source | Function
+---|---|---
+CH6 | S2 | choke servo
+CH7 | SH | starter relay
+CH8 | SD | ignition relay
 
 ### Firmware Update
 After downloading QGroundControl, launch the software. Follow the instructions for installing the latest version of the Firmware.
