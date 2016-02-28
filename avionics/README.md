@@ -15,6 +15,7 @@ Follow the instructions for setting up the controller for Single Channel Flight 
 
 ####Goliath specific configuration
 Additional channels are required for Goliath to control the gas engine. Setup the controller with the following channels: 
+
 Channel | Source | Function
 ---|---|---
 CH6 | S2 | choke servo
