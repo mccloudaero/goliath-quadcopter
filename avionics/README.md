@@ -1,7 +1,28 @@
 
-# Firmware
+# Avionics
 ### Overview
-This file is intended as a guide for setting up the firmware for Goliath. Goliath uses the [Pixhawk](http://www.pixhawk.org) flight controller. The Pixhawk hardware is open source and is capable of running different flight stacks. For Goliath, the PX4 flight stack was chosen.
+This file is intended as a guide for setting up the flight controller(avionics) for Goliath. Goliath uses the [Pixhawk](http://www.pixhawk.org) flight controller. The Pixhawk hardware is open source and is capable of running different flight stacks. For Goliath, the PX4 flight stack was chosen.
+
+## Basic Setup
+### Install QGroundControl
+QGroundControl is a software an open source micro air vehicle ground control station [QGroundControl](http://qgroundcontrol.com). In addition to being able to provide mission control for Goliath, it also provides an easy way to load the latest version of the Firmware.
+
+### Conroller Setup
+The Taranis X9D is the controller recommended for the Pixhawk. General information on setting up the Taranis with the Pixhawk can be found on the Pixhawk user guide at:
+[Pixhawk Flight Mode Configuration](http://px4.io/docs/flight-mode-configuration/)
+Follow the instructions for setting up the controller for Single Channel Flight Mode Configuration in the video.
+[Controller Setup](http://https://youtu.be/scqO7vbH2jo)
+
+####Goliath specific configuration
+
+### Firmware Update
+After downloading QGroundControl, launch the software. Follow the instructions for installing the latest version of the Firmware.
+
+### Configuration
+QGroundControl will prompt the user for configuration.
+
+## Advanced Firmware
+For more advanced users, looking to do software development, you'll want to fork the Firmware and compile it yourself. The following guides the developers on how to get setup
 
 ### Firmware Setup
 Before getting started with the firmware, the tool chains need to be setup for compiling the firmware. While the firmware can be compiled on most operating systems, it's really recommended to use Linux, particularly Ubuntu, as it has the most support. The instructions for setting up the tools chains for Linux can be found at:
