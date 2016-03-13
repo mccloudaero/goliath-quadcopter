@@ -1,7 +1,7 @@
 
 # Avionics
 ### Overview
-This file is intended as a guide for setting up the flight controller(avionics) for Goliath. Goliath uses the [Pixhawk](http://www.pixhawk.org) flight controller. The Pixhawk hardware is open source and is capable of running different flight stacks. For Goliath, the PX4 flight stack was chosen.
+This file is intended as a guide for setting up the flight controller(avionics) for Goliath. Goliath uses the [Pixhawk](http://www.px4.io) flight controller. The Pixhawk hardware is open source and is capable of running different flight stacks. For Goliath, the PX4 flight stack was chosen.
 
 ## Basic Setup
 ### Install QGroundControl
@@ -23,10 +23,18 @@ CH7 | SH | starter relay
 CH8 | SD | ignition relay
 
 ### Firmware Update
-After downloading QGroundControl, launch the software. Follow the instructions for installing the latest version of the Firmware.
+After downloading QGroundControl, launch the software. Follow the instructions for installing the latest version of the firmware.
 
-### Configuration
-QGroundControl will prompt the user for configuration.
+### Customize Configuration
+While, the Pixhawk firmware does not require modification, the controller does need custom configuration for Goliath. Customization is done by placing specific files on the flight controller SD card. Details on customization of the Pixhawk can be found at:<br>
+[Pixhawk: System Startup](http://dev.px4.io/advanced-system-startup.html)<br>
+[Pixhawk: Adding A New Airframe](http://dev.px4.io/airframes-adding-a-new-frame.html)
+
+#### Configuration File
+The configuration file on the SD card is at: /etc/config.txt
+
+#### Mixers
+Goliath requires a custom mixer file for both main and aux. The mixer files are placed at /etc/mixers/
 
 ## Advanced Firmware
 For more advanced users, looking to do software development, you'll want to fork the Firmware and compile it yourself. The following guides the developers on how to get setup
