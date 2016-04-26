@@ -10,3 +10,5 @@ Analysis done with Frame3DD
 4. ensure gnuplot is installed
 5. run
 
+##Run Analysis Case
+frame3dd template.3dd template.out
