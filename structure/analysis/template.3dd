@@ -1,6 +1,6 @@
 # Goliath Template (kip,in)
 # 6061T6 Properties
-# density 0.0975 lb/in3
+# density 9.75E-5 lb/in3
 # E 10000 ksi
 # G  3770 ksi
 
@@ -9,7 +9,7 @@
 
 # node data ...
 
-4			# number of nodes 
+12			# number of nodes 
 
 #.node    x         y         z         r
 #.n       in        in        in        in
@@ -18,47 +18,77 @@
  2       31.938    -26.375     0         0  # Rotor 2
  3       31.938     26.375     0         0  # Rotor 3
  4      -31.938     26.375     0         0  # Rotor 4
+ 5      -20.000     -9.000     0         0  # Corner 1A
+ 6      -15.000    -15.250     0         0  # Corner 1B
+ 7       15.000    -15.250     0         0  # Corner 2A 
+ 8       20.000     -9.000     0         0  # Corner 2B
+ 9       20.000      9.000     0         0  # Corner 3A
+ 10      15.000     15.250     0         0  # Corner 3B
+ 11     -15.000     15.250     0         0  # Corner 4A 
+ 12     -20.000      9.000     0         0  # Corner 4B
 
-1                               # number of nodes with reactions
+4                               # number of nodes with reactions
 #.n     x  y  z xx yy zz          1=fixed, 0=free
-  1     1  1  1  1  1  1
+  5     1  1  1  1  1  1        # Engine Mount
+  8     1  1  1  1  1  1        # Engine Mount
+  9     1  1  1  1  1  1        # Engine Mount
+ 12     1  1  1  1  1  1        # Engine Mount
 
 # frame element data ...
 
-4			# number of frame elements
-#.m    n1 n2  Ax      Asy     Asz     Jxx     Iyy     Izz     E      G    p   density
-#      .  .   in^2    in^2    in^2    in^4    in^4    in^4    ksi    ksi  deg k/cu.in/g
+12			# number of frame elements
+#.m    n1  n2  Ax      Asy     Asz     Jxx     Iyy     Izz     E      G    p   density
+#      .   .   in^2    in^2    in^2    in^4    in^4    in^4    ksi    ksi  deg k/cu.in/g
 
- 1      1  2  0.1261  0.1261  0.1261  0.2432  0.1216  0.1216  10000  3770 0   2.4e-10
- 2      2  3  0.1261  0.1261  0.1261  0.2432  0.1216  0.1216  10000  3770 0   2.4e-10
- 3      3  4  0.1261  0.1261  0.1261  0.2432  0.1216  0.1216  10000  3770 0   2.4e-10
- 4      4  1  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   2.4e-10
+ 1      1   6  0.1261  0.1261  0.1261  0.2432  0.1216  0.1216  10000  3770 0   9.75E-5
+ 2      6   7  0.1261  0.1261  0.1261  0.2432  0.1216  0.1216  10000  3770 0   9.75E-5
+ 3      7   2  0.1261  0.1261  0.1261  0.2432  0.1216  0.1216  10000  3770 0   9.75E-5
+ 4      2   8  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+ 5      8   9  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+ 6      9   3  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+ 7      3  10  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+ 8     10  11  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+ 9     11   4  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+10      4  12  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+11     12   5  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
+12      5   1  0.1261  0.1261  0.1261  0.2342  0.1216  0.1216  10000  3770 0   9.75E-5
 
 1               # 1: include shear deformation
 1               # 1: include geometric stiffness
-2.0             # exaggerate static mesh deformations
+10.0             # exaggerate static mesh deformations
 1.0             # zoom scale for 3D plotting
 12.0            # x-axis increment for internal force data, in
                 # if dx is -1 then internal force calculations are skipped.
 
 1			# number of static load cases
 
-				# Begin Static Load Case 1 of 1
+# Begin Static Load Case 1 of 1
 
 # gravitational acceleration for self-weight loading (global)
 #.gX            gY              gZ              
 #.in./s^2       in./s^2         in./s^2
-  0		-386.4		0 
+  0		0		-386.4 
 
-1                               # number of loaded nodes
-#.n       Fx         Fy     Fz     Mxx     Myy     Mzz
-#          k         k      k       k.in   k.in    k.in
-  1        0        200      0       0       0       0
+4                               # number of loaded nodes
+#.n       Fx        Fy     Fz      Mxx     Myy     Mzz
+#          k        k      k       k.in   k.in    k.in
+#  1       49.165   37.518      63.75     0       0       0
+#  2      -45.974   41.366      63.75     0       0       0
+#  3      -45.974  -41.366      63.75     0       0       0
+#  4       49.165  -37.518      63.75     0       0       0
+#  1      0   0      63.75     0       0       0
+#  2      0   0      63.75     0       0       0
+#  3      0   0      63.75     0       0       0
+#  4      0   0      63.75     0       0       0
+  1       0.049165   0.037518    0.06375     0       0       0
+  2      -0.045974   0.041366    0.06375     0       0       0
+  3      -0.045974  -0.041366    0.06375     0       0       0
+  4       0.049165  -0.037518    0.06375     0       0       0
 
-1                               # number of uniform distributed loads
+0                               # number of uniform distributed loads
 #..j      Ux         Uy      Uz
 #                            k/in
-  1       0          0      -2.361
+#  1       0          0      -2.361
 
 0                               # number of trapezoidal distributed loads
 0                               # number of internal concentrated loads
