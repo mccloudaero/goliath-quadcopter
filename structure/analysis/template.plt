@@ -1,6 +1,6 @@
 # FRAME3DD ANALYSIS RESULTS  http://frame3dd.sf.net/ VERSION 20140514+ 
 #  
-# Sat May 14 14:14:17 2016
+# Sat May 14 15:20:35 2016
 # G N U P L O T   S C R I P T   F I L E 
 set autoscale
 unset border
@@ -131,26 +131,24 @@ set label ' 71' at   1.0000e+01,  -1.5250e+01,  -2.0000e+00
 set label ' 72' at  -1.0000e+01,  -1.5250e+01,  -2.0000e+00
 set label ' 73' at   1.0000e+01,   1.5250e+01,  -2.0000e+00
 set label ' 74' at  -1.0000e+01,   1.5250e+01,  -2.0000e+00
-set label ' 75' at  -6.0000e+00,  -9.6250e+00,   1.0000e+00
-set label ' 76' at   6.0000e+00,  -9.6250e+00,   1.0000e+00
-set label ' 77' at   6.0000e+00,   9.6250e+00,   1.0000e+00
-set label ' 78' at  -6.0000e+00,   9.6250e+00,   1.0000e+00
-set label ' 79' at  -6.0000e+00,   0.0000e+00,   0.0000e+00
-set label ' 80' at   6.0000e+00,   0.0000e+00,   0.0000e+00
-set label ' 81' at   0.0000e+00,  -9.6250e+00,  -3.0000e+00
-set label ' 82' at   0.0000e+00,  -9.6250e+00,  -3.0000e+00
-set label ' 83' at   0.0000e+00,   9.6250e+00,  -3.0000e+00
-set label ' 84' at   0.0000e+00,   9.6250e+00,  -3.0000e+00
-set label ' 85' at   2.0000e+01,  -4.5000e+00,  -2.0000e+00
-set label ' 86' at   2.0000e+01,   4.5000e+00,  -2.0000e+00
-set label ' 87' at  -2.0000e+01,  -4.5000e+00,  -2.0000e+00
-set label ' 88' at  -2.0000e+01,   4.5000e+00,  -2.0000e+00
-set label ' 89' at   1.3000e+01,  -7.6250e+00,  -6.0000e+00
-set label ' 90' at  -1.3000e+01,  -7.6250e+00,  -6.0000e+00
-set label ' 91' at   1.3000e+01,   7.6250e+00,  -6.0000e+00
-set label ' 92' at  -1.3000e+01,   7.6250e+00,  -6.0000e+00
-set label ' 93' at  -6.0000e+00,   0.0000e+00,  -6.0000e+00
-set label ' 94' at   6.0000e+00,   0.0000e+00,  -6.0000e+00
+set label ' 75' at   2.0000e+01,  -4.5000e+00,  -2.0000e+00
+set label ' 76' at   2.0000e+01,   4.5000e+00,  -2.0000e+00
+set label ' 77' at  -2.0000e+01,  -4.5000e+00,  -2.0000e+00
+set label ' 78' at  -2.0000e+01,   4.5000e+00,  -2.0000e+00
+set label ' 79' at  -6.0000e+00,  -9.6250e+00,   1.0000e+00
+set label ' 80' at   6.0000e+00,  -9.6250e+00,   1.0000e+00
+set label ' 81' at   6.0000e+00,   9.6250e+00,   1.0000e+00
+set label ' 82' at  -6.0000e+00,   9.6250e+00,   1.0000e+00
+set label ' 83' at   0.0000e+00,  -9.6250e+00,  -3.0000e+00
+set label ' 84' at   0.0000e+00,  -9.6250e+00,  -3.0000e+00
+set label ' 85' at   0.0000e+00,   9.6250e+00,  -3.0000e+00
+set label ' 86' at   0.0000e+00,   9.6250e+00,  -3.0000e+00
+set label ' 87' at   1.3000e+01,  -7.6250e+00,  -6.0000e+00
+set label ' 88' at  -1.3000e+01,  -7.6250e+00,  -6.0000e+00
+set label ' 89' at   1.3000e+01,   7.6250e+00,  -6.0000e+00
+set label ' 90' at  -1.3000e+01,   7.6250e+00,  -6.0000e+00
+set label ' 91' at  -6.0000e+00,   0.0000e+00,  -6.0000e+00
+set label ' 92' at   6.0000e+00,   0.0000e+00,  -6.0000e+00
   set parametric
   set view 60, 70,  2.00 
   set view equal xyz # 1:1 3D axis scaling 
@@ -167,19 +165,19 @@ set xyplane 0
 pause -1
 unset label
   unset key
-set title 'template.3dd     mode 1     53.894547 Hz'
+set title 'template.3dd     mode 1     53.370420 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-01-' u 1:2 t 'mode-shape 1' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-01-' u 1:2:3 t 'mode-shape 1' w l lw 1 lt 3
 pause -1
-set title 'template.3dd     mode 2     88.024635 Hz'
+set title 'template.3dd     mode 2     85.995989 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-02-' u 1:2 t 'mode-shape 2' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-02-' u 1:2:3 t 'mode-shape 2' w l lw 1 lt 3
 pause -1
-set title 'template.3dd     mode 3     110.413177 Hz'
+set title 'template.3dd     mode 3     103.076040 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-03-' u 1:2 t 'mode-shape 3' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-03-' u 1:2:3 t 'mode-shape 3' w l lw 1 lt 3
 pause -1
-set title 'template.3dd     mode 4     112.556349 Hz'
+set title 'template.3dd     mode 4     108.124248 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-04-' u 1:2 t 'mode-shape 4' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-04-' u 1:2:3 t 'mode-shape 4' w l lw 1 lt 3
 
@@ -212,7 +210,7 @@ unset xtics; unset ytics; unset ztics;
 set size ratio -1    # 1:1 2D axis scaling 
   set view equal xyz # 1:1 3D axis scaling 
 pause -1 
-set title 'template.3dd     mode 1      53.894547 Hz'
+set title 'template.3dd     mode 1      53.370420 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
@@ -966,7 +964,7 @@ set title 'template.3dd     mode 1      53.894547 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2 w l lw 3 lt 3 
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2:3 w l lw 3 lt 3 
 pause -1 
-set title 'template.3dd     mode 2      88.024635 Hz'
+set title 'template.3dd     mode 2      85.995989 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
@@ -1720,7 +1718,7 @@ set title 'template.3dd     mode 2      88.024635 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2 w l lw 3 lt 3 
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2:3 w l lw 3 lt 3 
 pause -1 
-set title 'template.3dd     mode 3      110.413177 Hz'
+set title 'template.3dd     mode 3      103.076040 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
@@ -2474,7 +2472,7 @@ set title 'template.3dd     mode 3      110.413177 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2 w l lw 3 lt 3 
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2:3 w l lw 3 lt 3 
 pause -1 
-set title 'template.3dd     mode 4      112.556349 Hz'
+set title 'template.3dd     mode 4      108.124248 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-04.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-04.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
