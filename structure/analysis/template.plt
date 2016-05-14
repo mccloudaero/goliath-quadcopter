@@ -1,6 +1,6 @@
 # FRAME3DD ANALYSIS RESULTS  http://frame3dd.sf.net/ VERSION 20140514+ 
 #  
-# Sun May  8 21:35:36 2016
+# Sat May 14 14:14:17 2016
 # G N U P L O T   S C R I P T   F I L E 
 set autoscale
 unset border
@@ -12,107 +12,145 @@ unset label
 set size ratio -1    # 1:1 2D axis scaling 
 # set view equal xyz # 1:1 3D axis scaling 
 # NODE NUMBER LABELS
-set label ' 1' at  -3.1938e+01,  -2.6375e+01,   4.0000e+00
-set label ' 2' at   3.1938e+01,  -2.6375e+01,   4.0000e+00
-set label ' 3' at   3.1938e+01,   2.6375e+01,   4.0000e+00
-set label ' 4' at  -3.1938e+01,   2.6375e+01,   4.0000e+00
-set label ' 5' at  -3.1938e+01,  -2.6375e+01,  -4.0000e+00
-set label ' 6' at   3.1938e+01,  -2.6375e+01,  -4.0000e+00
-set label ' 7' at   3.1938e+01,   2.6375e+01,  -4.0000e+00
-set label ' 8' at  -3.1938e+01,   2.6375e+01,  -4.0000e+00
-set label ' 9' at  -2.0000e+01,  -9.0000e+00,   6.0000e+00
-set label ' 10' at  -1.5000e+01,  -1.5250e+01,   6.0000e+00
-set label ' 11' at  -6.0000e+00,  -1.5250e+01,   6.0000e+00
-set label ' 12' at   6.0000e+00,  -1.5250e+01,   6.0000e+00
-set label ' 13' at   1.5000e+01,  -1.5250e+01,   6.0000e+00
-set label ' 14' at   2.0000e+01,  -9.0000e+00,   6.0000e+00
-set label ' 15' at   2.0000e+01,   9.0000e+00,   6.0000e+00
-set label ' 16' at   1.5000e+01,   1.5250e+01,   6.0000e+00
-set label ' 17' at   6.0000e+00,   1.5250e+01,   6.0000e+00
-set label ' 18' at  -6.0000e+00,   1.5250e+01,   6.0000e+00
-set label ' 19' at  -1.5000e+01,   1.5250e+01,   6.0000e+00
-set label ' 20' at  -2.0000e+01,   9.0000e+00,   6.0000e+00
+set label ' 1' at  -3.1938e+01,  -2.6375e+01,   1.0000e+00
+set label ' 2' at   3.1938e+01,  -2.6375e+01,   1.0000e+00
+set label ' 3' at   3.1938e+01,   2.6375e+01,   1.0000e+00
+set label ' 4' at  -3.1938e+01,   2.6375e+01,   1.0000e+00
+set label ' 5' at  -3.1938e+01,  -2.6375e+01,  -6.0000e+00
+set label ' 6' at   3.1938e+01,  -2.6375e+01,  -6.0000e+00
+set label ' 7' at   3.1938e+01,   2.6375e+01,  -6.0000e+00
+set label ' 8' at  -3.1938e+01,   2.6375e+01,  -6.0000e+00
+set label ' 9' at  -2.0000e+01,  -9.0000e+00,   2.0000e+00
+set label ' 10' at  -1.4000e+01,  -1.5250e+01,   2.0000e+00
+set label ' 11' at  -6.0000e+00,  -1.5250e+01,   2.0000e+00
+set label ' 12' at   6.0000e+00,  -1.5250e+01,   2.0000e+00
+set label ' 13' at   1.4000e+01,  -1.5250e+01,   2.0000e+00
+set label ' 14' at   2.0000e+01,  -9.0000e+00,   2.0000e+00
+set label ' 15' at   2.0000e+01,   9.0000e+00,   2.0000e+00
+set label ' 16' at   1.4000e+01,   1.5250e+01,   2.0000e+00
+set label ' 17' at   6.0000e+00,   1.5250e+01,   2.0000e+00
+set label ' 18' at  -6.0000e+00,   1.5250e+01,   2.0000e+00
+set label ' 19' at  -1.4000e+01,   1.5250e+01,   2.0000e+00
+set label ' 20' at  -2.0000e+01,   9.0000e+00,   2.0000e+00
 set label ' 21' at  -2.0000e+01,  -9.0000e+00,  -6.0000e+00
-set label ' 22' at  -1.5000e+01,  -1.5250e+01,  -6.0000e+00
+set label ' 22' at  -1.4000e+01,  -1.5250e+01,  -6.0000e+00
 set label ' 23' at  -6.0000e+00,  -1.5250e+01,  -6.0000e+00
 set label ' 24' at   6.0000e+00,  -1.5250e+01,  -6.0000e+00
-set label ' 25' at   1.5000e+01,  -1.5250e+01,  -6.0000e+00
+set label ' 25' at   1.4000e+01,  -1.5250e+01,  -6.0000e+00
 set label ' 26' at   2.0000e+01,  -9.0000e+00,  -6.0000e+00
 set label ' 27' at   2.0000e+01,   9.0000e+00,  -6.0000e+00
-set label ' 28' at   1.5000e+01,   1.5250e+01,  -6.0000e+00
+set label ' 28' at   1.4000e+01,   1.5250e+01,  -6.0000e+00
 set label ' 29' at   6.0000e+00,   1.5250e+01,  -6.0000e+00
 set label ' 30' at  -6.0000e+00,   1.5250e+01,  -6.0000e+00
-set label ' 31' at  -1.5000e+01,   1.5250e+01,  -6.0000e+00
+set label ' 31' at  -1.4000e+01,   1.5250e+01,  -6.0000e+00
 set label ' 32' at  -2.0000e+01,   9.0000e+00,  -6.0000e+00
-set label ' 33' at  -1.5000e+01,  -1.0000e+01,   1.0000e+01
-set label ' 34' at   1.5000e+01,  -1.0000e+01,   1.0000e+01
-set label ' 35' at   1.5000e+01,   1.0000e+01,   1.0000e+01
-set label ' 36' at  -1.5000e+01,   1.0000e+01,   1.0000e+01
+set label ' 33' at  -1.5000e+01,  -1.0000e+01,   7.0000e+00
+set label ' 34' at   1.5000e+01,  -1.0000e+01,   7.0000e+00
+set label ' 35' at   1.5000e+01,   1.0000e+01,   7.0000e+00
+set label ' 36' at  -1.5000e+01,   1.0000e+01,   7.0000e+00
+set label ' 37' at  -6.0000e+00,  -4.0000e+00,   0.0000e+00
+set label ' 38' at   6.0000e+00,  -4.0000e+00,   0.0000e+00
+set label ' 39' at   6.0000e+00,   4.0000e+00,   0.0000e+00
+set label ' 40' at  -6.0000e+00,   4.0000e+00,   0.0000e+00
+set label ' 41' at   2.0000e+01,   0.0000e+00,   2.0000e+00
+set label ' 42' at  -2.0000e+01,   0.0000e+00,   2.0000e+00
+set label ' 43' at   2.0000e+01,   0.0000e+00,  -6.0000e+00
+set label ' 44' at  -2.0000e+01,   0.0000e+00,  -6.0000e+00
 # ELEMENT NUMBER LABELS
-set label ' 1' at  -3.1938e+01,  -2.6375e+01,   0.0000e+00
-set label ' 2' at   3.1938e+01,  -2.6375e+01,   0.0000e+00
-set label ' 3' at   3.1938e+01,   2.6375e+01,   0.0000e+00
-set label ' 4' at  -3.1938e+01,   2.6375e+01,   0.0000e+00
-set label ' 5' at  -2.3469e+01,  -2.0812e+01,   5.0000e+00
-set label ' 6' at  -1.0500e+01,  -1.5250e+01,   6.0000e+00
-set label ' 7' at   0.0000e+00,  -1.5250e+01,   6.0000e+00
-set label ' 8' at   1.0500e+01,  -1.5250e+01,   6.0000e+00
-set label ' 9' at   2.3469e+01,  -2.0812e+01,   5.0000e+00
-set label ' 10' at   2.5969e+01,  -1.7688e+01,   5.0000e+00
-set label ' 11' at   2.0000e+01,   0.0000e+00,   6.0000e+00
-set label ' 12' at   2.5969e+01,   1.7688e+01,   5.0000e+00
-set label ' 13' at   2.3469e+01,   2.0812e+01,   5.0000e+00
-set label ' 14' at   1.0500e+01,   1.5250e+01,   6.0000e+00
-set label ' 15' at   0.0000e+00,   1.5250e+01,   6.0000e+00
-set label ' 16' at  -1.0500e+01,   1.5250e+01,   6.0000e+00
-set label ' 17' at  -2.3469e+01,   2.0812e+01,   5.0000e+00
-set label ' 18' at  -2.5969e+01,   1.7688e+01,   5.0000e+00
-set label ' 19' at  -2.0000e+01,   0.0000e+00,   6.0000e+00
-set label ' 20' at  -2.5969e+01,  -1.7688e+01,   5.0000e+00
-set label ' 21' at  -2.3469e+01,  -2.0812e+01,  -5.0000e+00
-set label ' 22' at  -1.0500e+01,  -1.5250e+01,  -6.0000e+00
-set label ' 23' at   0.0000e+00,  -1.5250e+01,  -6.0000e+00
-set label ' 24' at   1.0500e+01,  -1.5250e+01,  -6.0000e+00
-set label ' 25' at   2.3469e+01,  -2.0812e+01,  -5.0000e+00
-set label ' 26' at   2.5969e+01,  -1.7688e+01,  -5.0000e+00
-set label ' 27' at   2.0000e+01,   0.0000e+00,  -6.0000e+00
-set label ' 28' at   2.5969e+01,   1.7688e+01,  -5.0000e+00
-set label ' 29' at   2.3469e+01,   2.0812e+01,  -5.0000e+00
-set label ' 30' at   1.0500e+01,   1.5250e+01,  -6.0000e+00
-set label ' 31' at   0.0000e+00,   1.5250e+01,  -6.0000e+00
-set label ' 32' at  -1.0500e+01,   1.5250e+01,  -6.0000e+00
-set label ' 33' at  -2.3469e+01,   2.0812e+01,  -5.0000e+00
-set label ' 34' at  -2.5969e+01,   1.7688e+01,  -5.0000e+00
-set label ' 35' at  -2.0000e+01,   0.0000e+00,  -6.0000e+00
-set label ' 36' at  -2.5969e+01,  -1.7688e+01,  -5.0000e+00
-set label ' 37' at   0.0000e+00,  -1.0000e+01,   1.0000e+01
-set label ' 38' at   1.5000e+01,   0.0000e+00,   1.0000e+01
-set label ' 39' at   0.0000e+00,   1.0000e+01,   1.0000e+01
-set label ' 40' at  -1.5000e+01,   0.0000e+00,   1.0000e+01
-set label ' 41' at  -2.3469e+01,  -1.8188e+01,   7.0000e+00
-set label ' 42' at  -1.7500e+01,  -9.5000e+00,   8.0000e+00
-set label ' 43' at  -1.5000e+01,  -1.2625e+01,   8.0000e+00
-set label ' 44' at   2.3469e+01,  -1.8188e+01,   7.0000e+00
-set label ' 45' at   1.5000e+01,  -1.2625e+01,   8.0000e+00
-set label ' 46' at   1.7500e+01,  -9.5000e+00,   8.0000e+00
-set label ' 47' at   2.3469e+01,   1.8188e+01,   7.0000e+00
-set label ' 48' at   1.7500e+01,   9.5000e+00,   8.0000e+00
-set label ' 49' at   1.5000e+01,   1.2625e+01,   8.0000e+00
-set label ' 50' at  -2.3469e+01,   1.8188e+01,   7.0000e+00
-set label ' 51' at  -1.5000e+01,   1.2625e+01,   8.0000e+00
-set label ' 52' at  -1.7500e+01,   9.5000e+00,   8.0000e+00
-set label ' 53' at   2.0000e+01,   0.0000e+00,   0.0000e+00
-set label ' 54' at   2.0000e+01,   0.0000e+00,   0.0000e+00
-set label ' 55' at  -2.0000e+01,   0.0000e+00,   0.0000e+00
-set label ' 56' at  -2.0000e+01,   0.0000e+00,   0.0000e+00
-set label ' 57' at  -1.0500e+01,  -1.5250e+01,   0.0000e+00
-set label ' 58' at  -1.0500e+01,  -1.5250e+01,   0.0000e+00
-set label ' 59' at   1.0500e+01,  -1.5250e+01,   0.0000e+00
-set label ' 60' at   1.0500e+01,  -1.5250e+01,   0.0000e+00
-set label ' 61' at   1.0500e+01,   1.5250e+01,   0.0000e+00
-set label ' 62' at   1.0500e+01,   1.5250e+01,   0.0000e+00
-set label ' 63' at  -1.0500e+01,   1.5250e+01,   0.0000e+00
-set label ' 64' at  -1.0500e+01,   1.5250e+01,   0.0000e+00
+set label ' 1' at  -3.1938e+01,  -2.6375e+01,  -2.5000e+00
+set label ' 2' at   3.1938e+01,  -2.6375e+01,  -2.5000e+00
+set label ' 3' at   3.1938e+01,   2.6375e+01,  -2.5000e+00
+set label ' 4' at  -3.1938e+01,   2.6375e+01,  -2.5000e+00
+set label ' 5' at  -2.2969e+01,  -2.0812e+01,   1.5000e+00
+set label ' 6' at  -1.0000e+01,  -1.5250e+01,   2.0000e+00
+set label ' 7' at   0.0000e+00,  -1.5250e+01,   2.0000e+00
+set label ' 8' at   1.0000e+01,  -1.5250e+01,   2.0000e+00
+set label ' 9' at   2.2969e+01,  -2.0812e+01,   1.5000e+00
+set label ' 10' at   2.5969e+01,  -1.7688e+01,   1.5000e+00
+set label ' 11' at   2.0000e+01,  -4.5000e+00,   2.0000e+00
+set label ' 12' at   2.0000e+01,   4.5000e+00,   2.0000e+00
+set label ' 13' at   2.5969e+01,   1.7688e+01,   1.5000e+00
+set label ' 14' at   2.2969e+01,   2.0812e+01,   1.5000e+00
+set label ' 15' at   1.0000e+01,   1.5250e+01,   2.0000e+00
+set label ' 16' at   0.0000e+00,   1.5250e+01,   2.0000e+00
+set label ' 17' at  -1.0000e+01,   1.5250e+01,   2.0000e+00
+set label ' 18' at  -2.2969e+01,   2.0812e+01,   1.5000e+00
+set label ' 19' at  -2.5969e+01,   1.7688e+01,   1.5000e+00
+set label ' 20' at  -2.0000e+01,   4.5000e+00,   2.0000e+00
+set label ' 21' at  -2.0000e+01,  -4.5000e+00,   2.0000e+00
+set label ' 22' at  -2.5969e+01,  -1.7688e+01,   1.5000e+00
+set label ' 23' at  -2.2969e+01,  -2.0812e+01,  -6.0000e+00
+set label ' 24' at  -1.0000e+01,  -1.5250e+01,  -6.0000e+00
+set label ' 25' at   0.0000e+00,  -1.5250e+01,  -6.0000e+00
+set label ' 26' at   1.0000e+01,  -1.5250e+01,  -6.0000e+00
+set label ' 27' at   2.2969e+01,  -2.0812e+01,  -6.0000e+00
+set label ' 28' at   2.5969e+01,  -1.7688e+01,  -6.0000e+00
+set label ' 29' at   2.0000e+01,  -4.5000e+00,  -6.0000e+00
+set label ' 30' at   2.0000e+01,   4.5000e+00,  -6.0000e+00
+set label ' 31' at   2.5969e+01,   1.7688e+01,  -6.0000e+00
+set label ' 32' at   2.2969e+01,   2.0812e+01,  -6.0000e+00
+set label ' 33' at   1.0000e+01,   1.5250e+01,  -6.0000e+00
+set label ' 34' at   0.0000e+00,   1.5250e+01,  -6.0000e+00
+set label ' 35' at  -1.0000e+01,   1.5250e+01,  -6.0000e+00
+set label ' 36' at  -2.2969e+01,   2.0812e+01,  -6.0000e+00
+set label ' 37' at  -2.5969e+01,   1.7688e+01,  -6.0000e+00
+set label ' 38' at  -2.0000e+01,   4.5000e+00,  -6.0000e+00
+set label ' 39' at  -2.0000e+01,  -4.5000e+00,  -6.0000e+00
+set label ' 40' at  -2.5969e+01,  -1.7688e+01,  -6.0000e+00
+set label ' 41' at   0.0000e+00,  -1.0000e+01,   7.0000e+00
+set label ' 42' at   1.5000e+01,   0.0000e+00,   7.0000e+00
+set label ' 43' at   0.0000e+00,   1.0000e+01,   7.0000e+00
+set label ' 44' at  -1.5000e+01,   0.0000e+00,   7.0000e+00
+set label ' 45' at  -2.3469e+01,  -1.8188e+01,   4.0000e+00
+set label ' 46' at  -1.7500e+01,  -9.5000e+00,   4.5000e+00
+set label ' 47' at  -1.4500e+01,  -1.2625e+01,   4.5000e+00
+set label ' 48' at   2.3469e+01,  -1.8188e+01,   4.0000e+00
+set label ' 49' at   1.4500e+01,  -1.2625e+01,   4.5000e+00
+set label ' 50' at   1.7500e+01,  -9.5000e+00,   4.5000e+00
+set label ' 51' at   2.3469e+01,   1.8188e+01,   4.0000e+00
+set label ' 52' at   1.7500e+01,   9.5000e+00,   4.5000e+00
+set label ' 53' at   1.4500e+01,   1.2625e+01,   4.5000e+00
+set label ' 54' at  -2.3469e+01,   1.8188e+01,   4.0000e+00
+set label ' 55' at  -1.4500e+01,   1.2625e+01,   4.5000e+00
+set label ' 56' at  -1.7500e+01,   9.5000e+00,   4.5000e+00
+set label ' 57' at   2.0000e+01,  -9.0000e+00,  -2.0000e+00
+set label ' 58' at   2.0000e+01,   9.0000e+00,  -2.0000e+00
+set label ' 59' at  -2.0000e+01,   9.0000e+00,  -2.0000e+00
+set label ' 60' at  -2.0000e+01,  -9.0000e+00,  -2.0000e+00
+set label ' 61' at  -1.4000e+01,  -1.5250e+01,  -2.0000e+00
+set label ' 62' at  -6.0000e+00,  -1.5250e+01,  -2.0000e+00
+set label ' 63' at   6.0000e+00,  -1.5250e+01,  -2.0000e+00
+set label ' 64' at   1.4000e+01,  -1.5250e+01,  -2.0000e+00
+set label ' 65' at   1.4000e+01,   1.5250e+01,  -2.0000e+00
+set label ' 66' at   6.0000e+00,   1.5250e+01,  -2.0000e+00
+set label ' 67' at  -6.0000e+00,   1.5250e+01,  -2.0000e+00
+set label ' 68' at  -1.4000e+01,   1.5250e+01,  -2.0000e+00
+set label ' 69' at   2.0000e+01,   0.0000e+00,  -2.0000e+00
+set label ' 70' at  -2.0000e+01,   0.0000e+00,  -2.0000e+00
+set label ' 71' at   1.0000e+01,  -1.5250e+01,  -2.0000e+00
+set label ' 72' at  -1.0000e+01,  -1.5250e+01,  -2.0000e+00
+set label ' 73' at   1.0000e+01,   1.5250e+01,  -2.0000e+00
+set label ' 74' at  -1.0000e+01,   1.5250e+01,  -2.0000e+00
+set label ' 75' at  -6.0000e+00,  -9.6250e+00,   1.0000e+00
+set label ' 76' at   6.0000e+00,  -9.6250e+00,   1.0000e+00
+set label ' 77' at   6.0000e+00,   9.6250e+00,   1.0000e+00
+set label ' 78' at  -6.0000e+00,   9.6250e+00,   1.0000e+00
+set label ' 79' at  -6.0000e+00,   0.0000e+00,   0.0000e+00
+set label ' 80' at   6.0000e+00,   0.0000e+00,   0.0000e+00
+set label ' 81' at   0.0000e+00,  -9.6250e+00,  -3.0000e+00
+set label ' 82' at   0.0000e+00,  -9.6250e+00,  -3.0000e+00
+set label ' 83' at   0.0000e+00,   9.6250e+00,  -3.0000e+00
+set label ' 84' at   0.0000e+00,   9.6250e+00,  -3.0000e+00
+set label ' 85' at   2.0000e+01,  -4.5000e+00,  -2.0000e+00
+set label ' 86' at   2.0000e+01,   4.5000e+00,  -2.0000e+00
+set label ' 87' at  -2.0000e+01,  -4.5000e+00,  -2.0000e+00
+set label ' 88' at  -2.0000e+01,   4.5000e+00,  -2.0000e+00
+set label ' 89' at   1.3000e+01,  -7.6250e+00,  -6.0000e+00
+set label ' 90' at  -1.3000e+01,  -7.6250e+00,  -6.0000e+00
+set label ' 91' at   1.3000e+01,   7.6250e+00,  -6.0000e+00
+set label ' 92' at  -1.3000e+01,   7.6250e+00,  -6.0000e+00
+set label ' 93' at  -6.0000e+00,   0.0000e+00,  -6.0000e+00
+set label ' 94' at   6.0000e+00,   0.0000e+00,  -6.0000e+00
   set parametric
   set view 60, 70,  2.00 
   set view equal xyz # 1:1 3D axis scaling 
@@ -120,7 +158,7 @@ set label ' 64' at  -1.0500e+01,   1.5250e+01,   0.0000e+00
   set xlabel 'x'
   set ylabel 'y'
   set zlabel 'z'
-set title " \nanalysis file: template.3dd   deflection exaggeration: 20.0   load case 1 of 1 "
+set title " \nanalysis file: template.3dd   deflection exaggeration: 10.0   load case 1 of 1 "
 unset clip; 
 set clip one; set clip two
 set xyplane 0 
@@ -129,19 +167,19 @@ set xyplane 0
 pause -1
 unset label
   unset key
-set title 'template.3dd     mode 1     89.856613 Hz'
+set title 'template.3dd     mode 1     53.894547 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-01-' u 1:2 t 'mode-shape 1' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-01-' u 1:2:3 t 'mode-shape 1' w l lw 1 lt 3
 pause -1
-set title 'template.3dd     mode 2     100.995421 Hz'
+set title 'template.3dd     mode 2     88.024635 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-02-' u 1:2 t 'mode-shape 2' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-02-' u 1:2:3 t 'mode-shape 2' w l lw 1 lt 3
 pause -1
-set title 'template.3dd     mode 3     123.382974 Hz'
+set title 'template.3dd     mode 3     110.413177 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-03-' u 1:2 t 'mode-shape 3' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-03-' u 1:2:3 t 'mode-shape 3' w l lw 1 lt 3
 pause -1
-set title 'template.3dd     mode 4     144.913936 Hz'
+set title 'template.3dd     mode 4     112.556349 Hz'
 # plot '/tmp/template-msh' u 2:3 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-04-' u 1:2 t 'mode-shape 4' w l lw 1 lt 3
   splot '/tmp/template-msh' u 2:3:4 t 'undeformed mesh' w l  lw 1 lt 5 , '/tmp/template-m-04-' u 1:2:3 t 'mode-shape 4' w l lw 1 lt 3
 
@@ -163,18 +201,18 @@ unset key
   set parametric
 # x_min = -3.19380e+01     x_max =  3.19380e+01 
 # y_min = -2.63750e+01     y_max =  2.63750e+01 
-# z_min = -6.00000e+00     z_max =  1.00000e+01 
-# Dxyz =  8.43724e+01 
-set xrange [ -48.812484 : 40.375242 ] 
-set yrange [ -43.249484 : 34.812242 ] 
-set zrange [ -22.874484 : 18.437242 ] 
+# z_min = -6.00000e+00     z_max =  7.00000e+00 
+# Dxyz =  8.38553e+01 
+set xrange [ -48.709054 : 40.323527 ] 
+set yrange [ -43.146054 : 34.760527 ] 
+set zrange [ -22.771054 : 15.385527 ] 
 unset xzeroaxis; unset yzeroaxis; unset zzeroaxis
 unset xtics; unset ytics; unset ztics; 
   set view 60, 70,  2.00 
 set size ratio -1    # 1:1 2D axis scaling 
   set view equal xyz # 1:1 3D axis scaling 
 pause -1 
-set title 'template.3dd     mode 1      89.856613 Hz'
+set title 'template.3dd     mode 1      53.894547 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
@@ -928,7 +966,7 @@ set title 'template.3dd     mode 1      89.856613 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2 w l lw 3 lt 3 
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-01.000' u 1:2:3 w l lw 3 lt 3 
 pause -1 
-set title 'template.3dd     mode 2      100.995421 Hz'
+set title 'template.3dd     mode 2      88.024635 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
@@ -1682,7 +1720,7 @@ set title 'template.3dd     mode 2      100.995421 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2 w l lw 3 lt 3 
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-02.000' u 1:2:3 w l lw 3 lt 3 
 pause -1 
-set title 'template.3dd     mode 3      123.382974 Hz'
+set title 'template.3dd     mode 3      110.413177 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
@@ -2436,7 +2474,7 @@ set title 'template.3dd     mode 3      123.382974 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2 w l lw 3 lt 3 
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-03.000' u 1:2:3 w l lw 3 lt 3 
 pause -1 
-set title 'template.3dd     mode 4      144.913936 Hz'
+set title 'template.3dd     mode 4      112.556349 Hz'
 # plot '/tmp/template-msh' u 2:3 w l lw 1 lt 5,  '/tmp/template-m-04.000' u 1:2 w l lw 1 lt 3 ; 
   set view   69.93,  100.13, 2.001 # pan = 1.000000
   splot '/tmp/template-msh' u 2:3:4 w l lw 1 lt 5,  '/tmp/template-m-04.000' u 1:2:3 w l lw 1 lt 3;  pause 1.5 
