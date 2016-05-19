@@ -1,6 +1,6 @@
 # FRAME3DD ANALYSIS RESULTS  http://frame3dd.sf.net/ VERSION 20140514+ 
 #  
-# Sat May 14 13:33:10 2016
+# Thu May 19 16:17:42 2016
 # G N U P L O T   S C R I P T   F I L E 
 set autoscale
 unset border
