@@ -11,4 +11,9 @@ Analysis done with Frame3DD
 5. run
 
 ##Run Analysis Case
-frame3dd template.3dd template.out
+frame3dd frame.3dd frame.out
+
+##Post-Processing
+After the analysis is complete, and the frame design is satisfactory, the results are post-processed. This is done to obtain the total lengths of the tubing required and to get the frame nodes coordinates to build a CAD object.
+
+./framepost.py
