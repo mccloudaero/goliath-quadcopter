@@ -1,5 +1,5 @@
 %
-(FILENAME: rotor_shaft_mount_C_wood_waterline.nc)
+(FILENAME: rotor_shaft_mount_D_wood_waterline.nc)
 (STOCK/BLOCK, 2.507, 6.500, 1.000, 0.250, 0.250, 1.000)
 G20G64G17
 G90
