@@ -3,7 +3,7 @@
 ### Overview
 This file is intended as a guide for setting up the flight controller(avionics) for Goliath. Goliath uses the [Pixhawk](http://www.px4.io) flight controller. The Pixhawk hardware is open source and is capable of running different flight stacks. For Goliath, the PX4 flight stack was chosen.
 
-![Pixhawk Connectors](https://pixhawk.org/_detail/modules/pixhawk_connectors.png)
+![Pixhawk Connectors](https://pixhawk.org/_media/modules/pixhawk_connectors.png)
 
 ## Basic Setup
 ### Install QGroundControl
