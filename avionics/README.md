@@ -3,6 +3,8 @@
 ### Overview
 This file is intended as a guide for setting up the flight controller(avionics) for Goliath. Goliath uses the [Pixhawk](http://www.px4.io) flight controller. The Pixhawk hardware is open source and is capable of running different flight stacks. For Goliath, the PX4 flight stack was chosen.
 
+![Pixhawk Connectors](https://pixhawk.org/_detail/modules/pixhawk_connectors.png)
+
 ## Basic Setup
 ### Install QGroundControl
 QGroundControl is a software an open source micro air vehicle ground control station [QGroundControl](http://qgroundcontrol.com). In addition to being able to provide mission control for Goliath, it also provides an easy way to load the latest version of the Firmware.
@@ -54,4 +56,7 @@ The PX4 flight stack is able to be used for different airframes though the use o
 The custom mixer file for Goliath will be located in this folder.
 
 ### Theory of Operation
-After ensuring that the area is clear, the first step is to set the master switch to ON. At this point the Pixhawk controller will power up and start in safe mode. While in safe mode, all of the servos and relays are disabled from being activated by the firmware. Once it's confirmed that the firmware is operating nominally, the operator can take the system out of safe mode. At this point all of the controls can be checked out prior to starting the engine. If all of the controls are working nominally, the engine can then be started. The engine ignition relay is enabled, allowing the engine to run. Next, the starter is used to start the engine.
+After ensuring that the area is clear, the first step is to set the master switch to ON. At this point the Pixhawk controller will power up and start in standby mode (Main LED will be breathing). While in safe mode, all of the servos and relays are disabled from being activated by the firmware. Once it's confirmed that the firmware is operating nominally, the operator can take the system out of safe mode. At this point all of the controls can be checked out prior to starting the engine. If all of the controls are working nominally, the engine can then be started. The engine ignition relay is enabled, allowing the engine to run. Next, the starter is used to start the engine.
+
+### Arming and Disarming
+To arm the drone, put the throttle stick in the bottom right corner. To disarm, put the throttle stick in the bottom left corner. Alternatively arming and disarming can also be performed in QGroundControl.
