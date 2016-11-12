@@ -9,11 +9,23 @@ This file is intended as a guide for setting up the flight controller(avionics) 
 ### Install QGroundControl
 QGroundControl is a software an open source micro air vehicle ground control station [QGroundControl](http://qgroundcontrol.com). In addition to being able to provide mission control for Goliath, it also provides an easy way to load the latest version of the Firmware.
 
-### Conroller Setup
+### Controller Setup
 The Taranis X9D is the controller recommended for the Pixhawk. General information on setting up the Taranis with the Pixhawk can be found on the Pixhawk user guide at:
 [Pixhawk Flight Mode Configuration](http://px4.io/docs/flight-mode-configuration/)
 Follow the instructions for setting up the controller for Single Channel Flight Mode Configuration in the video.
 [Controller Setup](http://https://youtu.be/scqO7vbH2jo)
+
+####Flight Modes
+Switches SE and SF are used together to cycle through the different modes.
+
+Num | Mode | Switch
+---|---|---
+1|Stabalized/Main|SF back, SE back
+2|Acro|SF back, SE mid
+3|Altitude Control|SF back, SE front
+4|Position Control|SF front, SE front
+5|Mission|SF front, SE mid
+6|Loiter|SF front, SE back
 
 ####Goliath specific configuration
 Additional channels are required for Goliath to control the gas engine. Setup the controller with the following channels: 
