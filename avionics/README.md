@@ -24,8 +24,8 @@ Num | Mode | Switch
 2|Acro|SF back, SE mid
 3|Altitude Control|SF back, SE front
 4|Position Control|SF front, SE front
-5|Mission|SF front, SE mid
-6|Loiter|SF front, SE back
+5|Loiter|SF front, SE mid
+6|Return|SF front, SE back
 
 ####Goliath specific configuration
 Additional channels are required for Goliath to control the gas engine. Setup the controller with the following channels: 
@@ -50,6 +50,21 @@ The configuration file on the SD card is at: /etc/config.txt
 #### Mixers
 Goliath requires a custom mixer file for both main and aux. The mixer files are placed at /etc/mixers/
 
+### Theory of Operation
+After ensuring that the area is clear, the first step is to set the master switch to ON. At this point the Pixhawk controller will power up and start in safe mode (Main LED will be breathing). While in safe mode, all of the servos and relays are disabled from being activated by the firmware. Once it's confirmed that the firmware is operating nominally, the operator can take the system out of safe mode. At this point all of the controls can be checked out prior to starting the engine. If all of the controls are working nominally, the engine can then be started. The engine ignition relay is enabled, allowing the engine to run. Next, the starter is used to start the engine.
+
+### Arming and Disarming
+#### From the Control Stick
+##### Arming
+1. Ensure the Main LED is breathing.
+2. Press and hold the safety swith for 3 seconds. The light on the safety switch will start blinking differently.
+3. Place the throttle stick in the bottom right corner and hold for 5 seconds. The main LED will become solid.
+##### Disarming
+To disarm, place the throttle stick in the bottom left corner.
+
+#### Ground Station
+Alternatively arming and disarming can also be performed in QGroundControl.
+
 ## Advanced Firmware
 For more advanced users, looking to do software development, you'll want to fork the Firmware and compile it yourself. The following guides the developers on how to get setup
 
@@ -65,10 +80,4 @@ The PX4 flight stack is able to be used for different airframes though the use o
 [Adding a new Airframe Configuration](http://dev.px4.io/airframes-adding-a-new-frame.html)
 [Old Guide - Deprecated](https://pixhawk.org/dev/mixing)
 
-The custom mixer file for Goliath will be located in this folder.
 
-### Theory of Operation
-After ensuring that the area is clear, the first step is to set the master switch to ON. At this point the Pixhawk controller will power up and start in standby mode (Main LED will be breathing). While in safe mode, all of the servos and relays are disabled from being activated by the firmware. Once it's confirmed that the firmware is operating nominally, the operator can take the system out of safe mode. At this point all of the controls can be checked out prior to starting the engine. If all of the controls are working nominally, the engine can then be started. The engine ignition relay is enabled, allowing the engine to run. Next, the starter is used to start the engine.
-
-### Arming and Disarming
-To arm the drone, put the throttle stick in the bottom right corner. To disarm, put the throttle stick in the bottom left corner. Alternatively arming and disarming can also be performed in QGroundControl.
