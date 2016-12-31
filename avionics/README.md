@@ -76,6 +76,12 @@ To disarm, place the throttle stick in the bottom left corner.
 #### Ground Station
 Alternatively arming and disarming can also be performed in QGroundControl.
 
+## System Console
+Using an FTDI 3.3V cable, connect it to the serial 4/5 port.
+
+Dev Guide on how to connect to the system console:
+http://dev.px4.io/advanced-system-console.html
+
 ## Advanced Firmware
 For more advanced users, looking to do software development, you'll want to fork the Firmware and compile it yourself. The following guides the developers on how to get setup
 
