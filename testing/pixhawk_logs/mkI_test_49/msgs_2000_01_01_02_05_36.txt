@@ -1,0 +1,66 @@
+MANUAL CONTROL LOST (at t=11335ms)
+MANUAL CONTROL REGAINED after 8153ms
+ARMED by RC
+TAKEOFF DETECTED
+[blackbox] /fs/microsd/log/sess005
+[blackbox] recording: log001.px4log
+MANUAL CONTROL LOST (at t=24523ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 1200ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=42027ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 5592ms
+failsafe mode off
+REJECT AUTO_MISSION
+MANUAL CONTROL LOST (at t=59432ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 2458ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=64207ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 1216ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=65850ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 5901ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=72881ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 4027ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=81046ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 5549ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=87000ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 5570ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=93209ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 2331ms
+failsafe mode off
+HIGH VIBRATION! g: 154 a: 964 m: 74
+MANUAL CONTROL LOST (at t=132369ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 1119ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=216533ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 2820ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=223511ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 1363ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=225618ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 2752ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=232033ms)
+failsafe mode on
+DISARMED by safety switch
+failsafe mode off
+LANDING DETECTED
+[blackbox] recording stopped

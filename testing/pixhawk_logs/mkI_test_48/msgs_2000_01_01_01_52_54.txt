@@ -1,0 +1,65 @@
+MANUAL CONTROL LOST (at t=7585ms)
+MANUAL CONTROL REGAINED after 2926ms
+MANUAL CONTROL LOST (at t=12157ms)
+MANUAL CONTROL REGAINED after 6366ms
+MANUAL CONTROL LOST (at t=19137ms)
+MANUAL CONTROL REGAINED after 3382ms
+MANUAL CONTROL LOST (at t=27813ms)
+MANUAL CONTROL REGAINED after 870ms
+MANUAL CONTROL LOST (at t=29302ms)
+MANUAL CONTROL REGAINED after 1695ms
+ARMED by RC
+TAKEOFF DETECTED
+[blackbox] /fs/microsd/log/sess004
+[blackbox] recording: log001.px4log
+MANUAL CONTROL LOST (at t=32579ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 2217ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=40127ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 1803ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=56043ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 8409ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=74009ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 3228ms
+failsafe mode off
+REJECT AUTO_MISSION
+MANUAL CONTROL LOST (at t=82895ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 3490ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=102811ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 1744ms
+failsafe mode off
+LOW BATTERY, RETURN TO LAND ADVISED
+HIGH VIBRATION! g: 7 a: 67 m: 6
+CRITICAL BATTERY, LAND IMMEDIATELY
+MANUAL CONTROL LOST (at t=341612ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 3476ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=350544ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 6697ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=358709ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 1662ms
+failsafe mode off
+MANUAL CONTROL LOST (at t=369181ms)
+failsafe mode on
+MANUAL CONTROL REGAINED after 3471ms
+failsafe mode off
+DISARMED by safety switch
+LANDING DETECTED
+[blackbox] recording stopped
+MANUAL CONTROL LOST (at t=376627ms)
+MANUAL CONTROL REGAINED after 2187ms
+MANUAL CONTROL LOST (at t=382222ms)
+MANUAL CONTROL REGAINED after 915ms
