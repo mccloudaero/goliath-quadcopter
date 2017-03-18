@@ -15,7 +15,10 @@ by Arvind Sanjeev
  void setup()
  {
    Serial.begin(115200);
-   attachInterrupt(0, magnet_detect, RISING);//Initialize the intterrupt pin (Arduino digital pin 2)
+   // Pins 2 & 3 are available for interupts, Pin 2 is used by USB on Trinket Pro
+   // 0 - Pin 2
+   // 1 = Pin 3
+   attachInterrupt(1, magnet_detect, RISING);//Initialize the intterrupt pin (Arduino digital pin 2)
    revolutions = 0;
    rpm = 0;
    timeold = 0;
