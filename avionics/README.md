@@ -40,11 +40,11 @@ After downloading QGroundControl, launch the software. Follow the instructions f
 ### Customize Configuration
 While, the Pixhawk firmware does not require modification, the controller does need custom configuration for Goliath.
 
-#### Configuration File
-The configuration file on the SD card is at: /etc/config.txt
+* config.txt 
+  Copy config.txt to the on the SD card at: /etc/config.txt
 
-#### Mixers
-Goliath requires a custom mixer file for both main and aux. The mixer files are placed at /etc/mixers/
+* mixer
+  Copy quad_x_variable_pitch_gas.main.mix on to the SD card at: /etc/mixers/
 
 Details on how to make custom mixer files can be found at http://dev.px4.io/concept-mixing.html
 
