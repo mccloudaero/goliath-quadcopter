@@ -1,7 +1,11 @@
 # Goliath Quadcopter
 set VEHICLE_TYPE mc
 set MAV_TYPE 0
+
+# Main
 set MIXER goliath_mkii
+set PWM_OUT 1234
 
 # Aux
+set MIXER_AUX goliath_mkii
 set PWM_AUX_OUT 1234
