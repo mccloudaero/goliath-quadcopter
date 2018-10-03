@@ -1,0 +1,646 @@
+diff --git a/cmake/configs/nuttx_px4fmu-v3_default.cmake b/cmake/configs/nuttx_px4fmu-v3_default.cmake
+index a5e3c20..a7e0e2e 100644
+--- a/cmake/configs/nuttx_px4fmu-v3_default.cmake
++++ b/cmake/configs/nuttx_px4fmu-v3_default.cmake
+@@ -211,4 +211,8 @@ set(config_module_list
+ 
+ 	# Hardware test
+ 	examples/hwtest
++
++	# Goliath related apps 
++	goliath/pwm_uart
++	goliath/gpio_relays
+ )
+diff --git a/src/goliath/gpio_relays/CMakeLists.txt b/src/goliath/gpio_relays/CMakeLists.txt
+new file mode 100644
+index 0000000..5b3a046
+--- /dev/null
++++ b/src/goliath/gpio_relays/CMakeLists.txt
+@@ -0,0 +1,42 @@
++############################################################################
++#
++#   Copyright (c) 2015 PX4 Development Team. All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++# 1. Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++# 2. Redistributions in binary form must reproduce the above copyright
++#    notice, this list of conditions and the following disclaimer in
++#    the documentation and/or other materials provided with the
++#    distribution.
++# 3. Neither the name PX4 nor the names of its contributors may be
++#    used to endorse or promote products derived from this software
++#    without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
++# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
++# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++############################################################################
++px4_add_module(
++	MODULE goliath__gpio_relays
++	MAIN gpio_relays
++	COMPILE_FLAGS
++	SRCS
++		gpio_relays.c
++	DEPENDS
++		platforms__common
++	)
++# vim: set noet ft=cmake fenc=utf-8 ff=unix :
+diff --git a/src/goliath/gpio_relays/gpio_relays.c b/src/goliath/gpio_relays/gpio_relays.c
+new file mode 100644
+index 0000000..d166323
+--- /dev/null
++++ b/src/goliath/gpio_relays/gpio_relays.c
+@@ -0,0 +1,269 @@
++/**
++ * @file gpio_relays.c
++ *
++ * GPIO Relays 
++ *
++ * usage
++ * gpio_relays {start|stop|status}
++ *
++ * @author Peter McCloud <peter@mccloudaero.com>
++ */
++
++
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <fcntl.h>
++#include <stdbool.h>
++#include <px4_module.h>
++#include <px4_log.h>
++#include <nuttx/wqueue.h>
++#include <nuttx/clock.h>
++#include <systemlib/systemlib.h>
++#include <systemlib/err.h>
++#include <uORB/uORB.h>
++#include <uORB/topics/vehicle_status.h>
++#include <uORB/topics/battery_status.h>
++#include <poll.h>
++#include <drivers/drv_gpio.h>
++#include <modules/px4iofirmware/protocol.h>
++
++
++#define CYCLE_RATE_HZ  5
++
++#define IGNITION_PIN 1;
++#define STARTER_PIN 2;
++
++#define IGNITION_PIN_NAME "AUX OUT 5"
++#define STARTER_PIN_NAME "AUX OUT 6"
++
++struct gpio_relays_s {
++	struct work_s work;
++	int gpio_fd;
++	int pin;
++	struct vehicle_status_s vehicle_status;
++	struct battery_status_s battery_status;
++	int vehicle_status_sub;
++	int battery_status_sub;
++	bool led_state;
++	int counter;
++};
++
++
++static struct gpio_relays_s *gpio_relays_data;
++static volatile enum {
++	Stopped =  0,
++	Running =  1,
++	Falied  =  2,
++	Stopping = 3
++} gpio_relays_state = Stopped;
++
++__EXPORT int gpio_relays_main(int argc, char *argv[]);
++
++void gpio_relays_start(FAR void *arg);
++
++void gpio_relays_cycle(FAR void *arg);
++
++static void print_usage(const char *reason)
++{
++	if (reason) {
++		PX4_WARN("%s\n", reason);
++	}
++
++	PRINT_MODULE_DESCRIPTION(
++		R"DESCR_STR(
++### Description
++This app is responsible for driving relays on the FMU AUX pins.
++
++### Implementation
++The module runs on the work queue. It schedules at a fixed frequency or 5 Hz
++
++### Examples
++It is started with:
++$  gpio_relays start
++)DESCR_STR");
++
++	PRINT_MODULE_USAGE_NAME("gpio_relays", "driver");
++	PRINT_MODULE_USAGE_COMMAND("start");
++	PRINT_MODULE_USAGE_COMMAND("stop");
++}
++
++int gpio_relays_main(int argc, char *argv[])
++{
++	if (argc < 2) {
++		print_usage(NULL);
++		exit(1);
++	} else {
++
++		if (!strcmp(argv[1], "start")) {
++			if (gpio_relays_state != Stopped) {
++				PX4_WARN("already running");
++				exit(1);
++			}
++
++			gpio_relays_data = malloc(sizeof(struct gpio_relays_s));
++			if (gpio_relays_data == NULL) {
++				PX4_ERR("failed to allocate memory!");
++				exit(1);
++			} else {
++				memset(gpio_relays_data, 0, sizeof(struct gpio_relays_s));
++				gpio_relays_data->pin = IGNITION_PIN;
++				int ret = work_queue(LPWORK, &(gpio_relays_data->work), gpio_relays_start, gpio_relays_data, 0);
++
++				if (ret != 0) {
++					PX4_ERR("failed to queue work: %d", ret);
++					goto out;
++				} else {
++					usleep(1000000/CYCLE_RATE_HZ);
++					if (gpio_relays_state != Running) {
++						gpio_relays_state = Stopped;
++						goto out;
++					}
++					PX4_INFO("start, using ignition pin: %s", IGNITION_PIN_NAME);
++					exit(0);
++				}
++			}
++
++		} else if (!strcmp(argv[1], "stop")) {
++			if (gpio_relays_state == Running) {
++				gpio_relays_state = Stopping;
++				while(gpio_relays_state != Stopped) {
++					usleep(1000000/CYCLE_RATE_HZ);
++				}
++				PX4_INFO("stopped");
++				free (gpio_relays_data);
++				gpio_relays_data = NULL;
++				exit(0);
++			} else {
++				PX4_WARN("not running");
++				exit(1);
++			}
++
++		} else {
++			print_usage("unrecognized command");
++			exit(1);
++		}
++	}
++out:
++	free (gpio_relays_data);
++	gpio_relays_data = NULL;
++	exit(1);
++}
++
++void gpio_relays_start(FAR void *arg)
++{
++	FAR struct gpio_relays_s *priv = (FAR struct gpio_relays_s *)arg;
++
++	char *gpio_dev = PX4FMU_DEVICE_PATH;
++
++	/* open GPIO device */
++	priv->gpio_fd = open(gpio_dev, 0);
++
++	if (priv->gpio_fd < 0) {
++		PX4_ERR("gpio_relays: GPIO device \"%s\" open fail\n", gpio_dev);
++		gpio_relays_state = Falied;
++		return;
++	}
++
++	/* configure GPIO pin */
++
++	ioctl(priv->gpio_fd, GPIO_SET_OUTPUT, priv->pin);
++
++	/* initialize vehicle status structure */
++	memset(&priv->vehicle_status, 0, sizeof(priv->vehicle_status));
++
++	/* initialize battery status structure */
++	memset(&priv->battery_status, 0, sizeof(priv->battery_status));
++
++	/* subscribe to vehicle status topic */
++	priv->vehicle_status_sub = orb_subscribe(ORB_ID(vehicle_status));
++
++	/* subscribe to battery status topic */
++	priv->battery_status_sub = orb_subscribe(ORB_ID(battery_status));
++
++	/* add worker to queue */
++	int ret = work_queue(LPWORK, &priv->work, gpio_relays_cycle, priv, 0);
++
++	if (ret != 0) {
++		PX4_ERR("gpio_relays: failed to queue work: %d\n", ret);
++		close(priv->gpio_fd);
++		gpio_relays_state = Falied;
++		return;
++	}
++	gpio_relays_state = Running;
++}
++
++void gpio_relays_cycle(FAR void *arg)
++{
++	FAR struct gpio_relays_s *priv = (FAR struct gpio_relays_s *)arg;
++
++	/* check for vehicle status updates*/
++	bool updated;
++	orb_check(priv->vehicle_status_sub, &updated);
++
++	if (updated) {
++		orb_copy(ORB_ID(vehicle_status), priv->vehicle_status_sub, &priv->vehicle_status);
++	}
++
++	orb_check(priv->battery_status_sub, &updated);
++
++	if (updated) {
++		orb_copy(ORB_ID(battery_status), priv->battery_status_sub, &priv->battery_status);
++	}
++
++	/* select pattern for current vehiclestatus */
++	int pattern = 0;
++
++	if (priv->vehicle_status.arming_state == ARMING_STATE_ARMED_ERROR) {
++		pattern = 0x2A;	// *_*_*_ fast blink (armed, error)
++
++	} else if (priv->vehicle_status.arming_state == ARMING_STATE_ARMED) {
++		if (priv->battery_status.warning == BATTERY_WARNING_NONE
++		    && !priv->vehicle_status.failsafe) {
++			pattern = 0x3f;	// ****** solid (armed)
++
++		} else {
++			pattern = 0x3e;	// *****_ slow blink (armed, battery low or failsafe)
++		}
++
++	} else if (priv->vehicle_status.arming_state == ARMING_STATE_STANDBY) {
++		pattern = 0x38;	// ***___ slow blink (disarmed, ready)
++
++	} else if (priv->vehicle_status.arming_state == ARMING_STATE_STANDBY_ERROR) {
++		pattern = 0x28;	// *_*___ slow double blink (disarmed, error)
++
++	}
++
++	/* blink pattern */
++	bool led_state_new = (pattern & (1 << priv->counter)) != 0;
++
++	if (led_state_new != priv->led_state) {
++		priv->led_state = led_state_new;
++
++		if (led_state_new) {
++			ioctl(priv->gpio_fd, GPIO_SET, priv->pin);
++
++		} else {
++			ioctl(priv->gpio_fd, GPIO_CLEAR, priv->pin);
++		}
++	}
++
++	priv->counter++;
++
++	if (priv->counter > 5) {
++		priv->counter = 0;
++	}
++
++	/* repeat cycle at 5 Hz */
++	if (gpio_relays_state == Running) {
++		work_queue(LPWORK, &priv->work, gpio_relays_cycle, priv, USEC2TICK(1000000/CYCLE_RATE_HZ));
++
++	} else {
++		/* switch off LED on stop */
++		ioctl(priv->gpio_fd, GPIO_CLEAR, priv->pin);
++		orb_unsubscribe(priv->vehicle_status_sub);
++		orb_unsubscribe(priv->battery_status_sub);
++		close(priv->gpio_fd);
++		gpio_relays_state = Stopped;
++	}
++}
+diff --git a/src/goliath/pwm_uart/CMakeLists.txt b/src/goliath/pwm_uart/CMakeLists.txt
+new file mode 100644
+index 0000000..bc4f4bc
+--- /dev/null
++++ b/src/goliath/pwm_uart/CMakeLists.txt
+@@ -0,0 +1,42 @@
++############################################################################
++#
++#   Copyright (c) 2015 PX4 Development Team. All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++#
++# 1. Redistributions of source code must retain the above copyright
++#    notice, this list of conditions and the following disclaimer.
++# 2. Redistributions in binary form must reproduce the above copyright
++#    notice, this list of conditions and the following disclaimer in
++#    the documentation and/or other materials provided with the
++#    distribution.
++# 3. Neither the name PX4 nor the names of its contributors may be
++#    used to endorse or promote products derived from this software
++#    without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
++# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
++# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
++# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
++# POSSIBILITY OF SUCH DAMAGE.
++#
++############################################################################
++px4_add_module(
++	MODULE goliath__pwm_uart
++	MAIN pwm_uart
++	STACK_MAIN 2000
++	SRCS
++		pwm_uart.c
++	DEPENDS
++		platforms__common
++	)
++# vim: set noet ft=cmake fenc=utf-8 ff=unix : 
+diff --git a/src/goliath/pwm_uart/README.md b/src/goliath/pwm_uart/README.md
+new file mode 100644
+index 0000000..79a5b91
+--- /dev/null
++++ b/src/goliath/pwm_uart/README.md
+@@ -0,0 +1,7 @@
++## Compilation
++
++1. Copy the contents of this folder to your PX4 source under /src/examples/pwm_uart
++2. Compile the source by running:
++  make px4fmu-v3_default
++3. Flash the firmware to the Pixhawk
++  make px4fmu-v3_default upload
+diff --git a/src/goliath/pwm_uart/pwm_uart.c b/src/goliath/pwm_uart/pwm_uart.c
+new file mode 100644
+index 0000000..82c3f4f
+--- /dev/null
++++ b/src/goliath/pwm_uart/pwm_uart.c
+@@ -0,0 +1,243 @@
++/**
++ * @file pwm_uart.c
++ *
++ * PWM UART interface
++ * 230400 baud, 8 data bits,1 stop bit, no parity
++ *
++ * usage
++ * pwm_uart {start|stop|status} [port]
++ * /dev/ttyS2 is TELEM2
++ *
++ * @author Peter McCloud <peter@mccloudaero.com>
++ */
++
++#include <px4_config.h>
++#include <px4_tasks.h>
++
++#include <unistd.h>
++#include <stdlib.h>
++#include <stdio.h>
++#include <string.h>
++#include <stdbool.h>
++#include <fcntl.h>
++#include <float.h>
++#include <nuttx/sched.h>
++#include <sys/prctl.h>
++#include <drivers/drv_hrt.h>
++#include <termios.h>
++#include <errno.h>
++#include <limits.h>
++#include <math.h>
++
++#include <uORB/uORB.h>
++#include <uORB/topics/actuator_outputs.h>
++
++#include <drivers/drv_accel.h>
++#include <drivers/drv_gyro.h>
++#include <systemlib/systemlib.h>
++#include <systemlib/err.h>
++#include <poll.h>
++
++__EXPORT int pwm_uart_main(int argc, char *argv[]);
++static bool thread_should_exit = false;		/**< Daemon exit flag */
++static bool thread_running = false;		/**< Daemon status flag */
++static int daemon_task;				/**< Handle of daemon task / thread */
++
++int pwm_uart_thread_main(int argc, char *argv[]);
++static void usage(const char *reason);
++
++
++static void usage(const char *reason)
++{
++	if (reason) {
++		fprintf(stderr, "%s\n", reason);
++	}
++
++	fprintf(stderr, "usage: daemon {start|stop|status} [-p <additional params>]\n\n");
++	exit(1);
++}
++
++
++/**
++ * The daemon app only briefly exists to start
++ * the background job. The stack size assigned in the
++ * Makefile does only apply to this management task.
++ *
++ * The actual stack size should be set in the call
++ * to px4_task_spawn_cmd().
++ */
++int pwm_uart_main(int argc, char *argv[])
++{
++	if (argc < 2) {
++		usage("missing command");
++	}
++
++	if (!strcmp(argv[1], "start")) {
++		if (thread_running) {
++			warnx("already running\n");
++			/* this is not an error */
++			exit(0);
++		}
++
++		thread_should_exit = false;
++		daemon_task = px4_task_spawn_cmd("pwm_uart",
++						 SCHED_DEFAULT,
++						 SCHED_PRIORITY_MAX - 5,
++						 2000,
++						 pwm_uart_thread_main,
++						 (argv) ? (char *const *)&argv[2] : (char *const *)NULL);
++		exit(0);
++	}
++
++	if (!strcmp(argv[1], "stop")) {
++		thread_should_exit = true;
++		exit(0);
++	}
++
++	if (!strcmp(argv[1], "status")) {
++		if (thread_running) {
++			warnx("running");
++
++		} else {
++			warnx("stopped");
++		}
++
++		exit(0);
++	}
++
++	usage("unrecognized command");
++	exit(1);
++}
++
++int pwm_uart_thread_main(int argc, char *argv[])
++{
++
++	if (argc < 2) {
++		errx(1, "need a serial port name as argument");
++	}
++
++	const char *uart_name = argv[1];
++
++	warnx("opening port %s", uart_name);
++
++	int serial_fd = open(uart_name, O_RDWR | O_NOCTTY);
++
++	unsigned speed = 230400;
++
++	if (serial_fd < 0) {
++		err(1, "failed to open port: %s", uart_name);
++	}
++
++	/* Try to set baud rate */
++	struct termios uart_config;
++	int termios_state;
++
++	/* Back up the original uart configuration to restore it after exit */
++	if ((termios_state = tcgetattr(serial_fd, &uart_config)) < 0) {
++		warnx("ERR GET CONF %s: %d\n", uart_name, termios_state);
++		close(serial_fd);
++		return -1;
++	}
++
++	/* Clear ONLCR flag (which appends a CR for every LF) */
++	uart_config.c_oflag &= ~ONLCR;
++
++	/* USB serial is indicated by /dev/ttyACM0*/
++	if (strcmp(uart_name, "/dev/ttyACM0") != OK && strcmp(uart_name, "/dev/ttyACM1") != OK) {
++
++		/* Set baud rate */
++		if (cfsetispeed(&uart_config, speed) < 0 || cfsetospeed(&uart_config, speed) < 0) {
++			warnx("ERR SET BAUD %s: %d\n", uart_name, termios_state);
++			close(serial_fd);
++			return -1;
++		}
++
++	}
++
++	if ((termios_state = tcsetattr(serial_fd, TCSANOW, &uart_config)) < 0) {
++		warnx("ERR SET CONF %s\n", uart_name);
++		close(serial_fd);
++		return -1;
++	}
++
++	/* subscribe to actuator outputs*/
++	struct actuator_outputs_s actuator_out0;
++
++	/* subscribe to parameter changes */
++	int actuator_out0_sub = orb_subscribe_multi(ORB_ID(actuator_outputs), 0);
++
++	thread_running = true;
++
++        uint16_t servo1_value;
++        uint16_t servo2_value;
++        uint16_t servo3_value;
++        uint16_t servo4_value;
++
++	while (!thread_should_exit) {
++
++		/*This runs at the rate of the topic */
++		struct pollfd fds[] = {
++			{ .fd = actuator_out0_sub, .events = POLLIN }
++		};
++
++		/* wait for a sensor update, check for exit condition every 500 ms */
++		int ret = poll(fds, sizeof(fds) / sizeof(fds[0]), 500);
++
++		if (ret < 0) {
++			/* poll error, ignore */
++
++		} else if (ret == 0) {
++			/* no return value, ignore */
++			warnx("no actuator output data");
++
++		} else {
++
++			/* actuator_out0 update available? */
++			if (fds[0].revents & POLLIN) {
++				orb_copy(ORB_ID(actuator_outputs), actuator_out0_sub, &actuator_out0);
++
++                                /* convert values to uint16_t since actuator_out0.output[X] is float */
++                                servo1_value = (uint16_t)actuator_out0.output[0];
++                                servo2_value = (uint16_t)actuator_out0.output[1];
++                                servo3_value = (uint16_t)actuator_out0.output[2];
++                                servo4_value = (uint16_t)actuator_out0.output[3];
++
++                        	/* packet */
++                                uint8_t buf[128];
++                        	buf[0] = 0xfe;  // Start byte
++                        	buf[1] = 8;     // Payload length 
++                                memcpy(&buf[2],&servo1_value, sizeof(uint16_t));
++                                memcpy(&buf[4],&servo2_value, sizeof(uint16_t));
++                                memcpy(&buf[6],&servo3_value, sizeof(uint16_t));
++                                memcpy(&buf[8],&servo4_value, sizeof(uint16_t));
++                                
++                                /* debug */
++                                /*
++		                warnx("payload length: %u", buf[1]);
++		                warnx("payload bytes: %x,%x", buf[2],buf[3]);
++		                warnx("servo1: %d", (int)actuator_out0.output[0]);
++		                warnx("servo2: %d", (int)actuator_out0.output[1]);
++		                warnx("servo3: %d", (int)actuator_out0.output[2]);
++		                warnx("servo4: %d", (int)actuator_out0.output[3]);
++                                */
++
++                                /* send data via uart */
++                                //int packet_len = crc_packet(packet);
++                        	int result = write(serial_fd, &buf, 128);
++
++                        	if (result < 1) {
++                        		warnx("Failed sending rc mavlink message, ret: %d, errno: %d", ret, errno);
++                        	}
++			}
++
++		}
++	}
++
++	warnx("exiting");
++	thread_running = false;
++
++	fflush(stdout);
++	return 0;
++}
++
++
