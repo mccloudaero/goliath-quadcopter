@@ -35,7 +35,7 @@ CH7 | SH | starter relay
 CH8 | SD | ignition relay
 
 ### Firmware Update
-After downloading QGroundControl, launch the software. Follow the instructions for installing the latest version of the firmware.
+Goliath requires special drivers for PX4, and therefore a custom Firmware update. Following the instructions found in /goliath_px4_firmware_patch/README.md
 
 ### Customize Configuration
 While, the Pixhawk firmware does not require modification, the controller does need custom configuration for Goliath.
