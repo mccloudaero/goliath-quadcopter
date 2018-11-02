@@ -1,1 +1,0 @@
-pwm_uart start /dev/ttyS2
