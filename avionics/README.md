@@ -40,11 +40,16 @@ Goliath requires special drivers for PX4, and therefore a custom Firmware update
 ### Customize Configuration
 While, the Pixhawk firmware does not require modification, the controller does need custom configuration for Goliath.
 
-* config.txt 
-  Copy config.txt to the on the SD card at: /etc/config.txt
+Copy /etc in the avionics directory to the SD card.
 
-* mixer
-  Copy quad_x_variable_pitch_gas.main.mix on to the SD card at: /etc/mixers/
+* /etc/config.txt 
+  Sets up the custom configuration for Goliath, specifies which mixers to use 
+
+* /etc/extras.txt 
+  Starts the driver for the EVPR master node 
+
+* /etc/mixers
+  Custom mixers for goliath
 
 Details on how to make custom mixer files can be found at http://dev.px4.io/concept-mixing.html
 
