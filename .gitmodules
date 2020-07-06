@@ -1,0 +1,3 @@
+[submodule "evpr"]
+	path = evpr
+	url = https://github.com/mccloudaero/evpr.git
